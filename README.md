@@ -10,6 +10,27 @@
 
 ## Documentation Sections
 
+## Deliverables
+
+According to the SoW and Action plan the status on the deliverables 
+
+# Proposed architecture
+Primary Vault-Consul cluster was delivered
+PR clusters - Pending
+DR cluseers - Pending
+
+# Deliverables table
+| Deliverable | Status 
+| ------ | ------ |
+| Auto-KMS Unseal | Done | 
+| Dynamic Database Creds | Done |
+| Ensure Vault Keys are rotated | Done | 
+| Vault Agent Configuration with Consul templates | Done |
+| Configure User Authentication | Done |
+| Leave behind documentation | Done |
+| Use Dynamic S3 credentials |
+| Secure storage over recovery Keys | Pending | 
+
 ### Provisioning and Architecture
 
 | Asset Name | Region 
@@ -28,6 +49,27 @@ From an architectural viewpoint us-east-1 was discarded as the primary region an
 | ------ | ------ 
 | Flask App | http://18.228.155.206:8000/ |
 
+### Vault Auto-Unseal with AWS KMS / Vault initialization
+
+```
+$ vault operator init -recovery-pgp-keys=keybase:cramirez92,keybase:rigelreyes,keybase:arielazem,keybase:richp -recovery-shares=3 -recovery-threshold=3
+```
+
+### Enabling Audit Log File device
+
+```
+vault audit enable syslog tag="vault" facility="LOCAL7"
+Success! Enabled the syslog audit device at: syslog/
+```
+
+### Enable Userpass Auth method
+
+admin-policy contains all privileges required for an admin user in vault
+
+```
+vault auth enable userpass
+vault write auth/userpass/users/ariel-dbadmin password=foo policies=admin-policy
+```
 ### Database Dynamic Secrets Configuration
 Database Dynamic secrets were enabled in order to work with the flask application following the steps below, for the MySQL/MariaDB database.
 
