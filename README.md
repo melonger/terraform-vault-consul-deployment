@@ -10,16 +10,16 @@
 
 ## Documentation Sections
 
-## Deliverables
+### Deliverables
 
 According to the SoW and Action plan the status on the deliverables 
 
-# Proposed architecture
+### Proposed architecture
 Primary Vault-Consul cluster was delivered  
 PR clusters - Pending  
 DR cluseers - Pending
 
-# Deliverables table
+### Deliverables table
 | Deliverable | Status 
 | ------ | ------ |
 | Auto-KMS Unseal | Done | 
