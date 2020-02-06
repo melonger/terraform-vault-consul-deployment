@@ -87,6 +87,22 @@ path "transit/+/orders" {
 vault secrets enable transit
 vault write -f transit/keys/orders
 ```
+
+Modifications on flask app to support EaaS
+```
+sh
+#!/bin/bash
+command=$1
+shift 1
+text=$@
+export VAULT_ADDR=http://localhost:8007
+if [ $command = "encrypt" ]; then
+   vault write -format=json transit/encrypt/my-key plaintext=`base64 <<< "$text"` |jq -r ".data.ciphertext"
+else
+   vault write -format=json transit/decrypt/my-key ciphertext=$text |jq -r ".data.plaintext"|base64 --decode
+fi
+```
+
 ### Configure Vault Agent
 Config File (/opt/vault/config/agent-config.hcl)
 ```sh
