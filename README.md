@@ -59,7 +59,6 @@ $ vault operator init -recovery-pgp-keys=keybase:cramirez92,keybase:rigelreyes,k
 
 ```
 vault audit enable syslog tag="vault" facility="LOCAL7"
-Success! Enabled the syslog audit device at: syslog/
 ```
 
 ### Enable Userpass Auth method
