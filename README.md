@@ -28,7 +28,7 @@ DR cluseers - Pending
 | Vault Agent Configuration with Consul templates | Done |
 | Configure User Authentication | Done |
 | Leave behind documentation | Done |
-| Use Dynamic S3 credentials |
+| Use Dynamic S3 credentials | Done |
 | Secure storage over recovery Keys | Pending | 
 
 ### Provisioning and Architecture
