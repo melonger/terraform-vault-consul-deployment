@@ -15,8 +15,8 @@
 According to the SoW and Action plan the status on the deliverables 
 
 # Proposed architecture
-Primary Vault-Consul cluster was delivered
-PR clusters - Pending
+Primary Vault-Consul cluster was delivered  
+PR clusters - Pending  
 DR cluseers - Pending
 
 # Deliverables table
