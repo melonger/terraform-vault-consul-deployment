@@ -1,5 +1,6 @@
-# Sparkly Sprokets
+# Spacely Sprokets
 
+<img src="https://omgpreviews.com/wp-content/uploads/2015/07/Logo-011.png" width="150"><br>
 <img src="https://www.digitalonus.com/wp-content/uploads/2019/06/digital_on_us_logo.png" width="300"><br>
 <img src="https://cdn.worldvectorlogo.com/logos/hashicorp.svg" width="150">
 <br><br>
@@ -89,7 +90,7 @@ vault write -f transit/keys/orders
 ### Configure Vault Agent
 Config File (/opt/vault/config/agent-config.hcl)
 ```sh
-xit_after_auth = false
+exit_after_auth = false
 pid_file = "./pidfile"
 auto_auth {
    method "approle" {
@@ -149,6 +150,29 @@ Consul Template awscreds.json.ctmpl
   "SECRET_KEY": "{{ .Data.secret_key }}"
 }
 {{ end }}
+
+AWS S3 Bucket configuration commands
+```sh
+vault secrets enable aws
+vault write aws/config/root access_key=$ACCESSKEY secret_key=$SECRETKEY
+vault write aws/config/my-role \
+    access_key=$ACCESSKEY \
+    secret_key=$SECRETKEY \
+    region=ca-central-1
+vault write aws/roles/my-role \
+    credential_type=iam_user \
+    policy_document=-<<EOF
+{
+  “Version”: “2012-10-17",
+  “Statement”: [
+    {
+      “Effect”: “Allow”,
+      “Action”: “s3:*“,
+      “Resource”: “*”
+    }
+  ]
+}
+EOF
 ```
 
 ### Run agent
